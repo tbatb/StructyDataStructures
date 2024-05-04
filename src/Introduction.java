@@ -32,6 +32,57 @@ public class Introduction {
         return true;
     }
 
+    public static String uncompress(String s) {
+        // todo
+        String numbers = "0123456789";
+        String result = "";
+
+        int i = 0;
+        int j = 0;
+        while (j < s.length()){
+            String character = String.valueOf(s.charAt(j));
+            if (numbers.contains(character)){
+                j+=1;
+            } else {
+                int num = Integer.parseInt(s.substring(i, j));
+                result += character.repeat(num);
+                j += 1;
+                i = j;
+            }
+        }
+        return result;
+    }
+
+    public static String compress(String s) {
+        // todo
+        String result = "";
+        int count = 1;
+        int i = 1;
+        int j = 1;
+        while ( j < s.length()){
+            if (s.charAt(j) == s.charAt(j-1)){
+                count++;
+                j++;
+            } else if (count == 1){
+                result += String.valueOf(s.charAt(i-1));
+                j++;
+                i = j;
+            } else {
+                result += count + String.valueOf(s.charAt(i-1));
+                j++;
+                i = j;
+                count = 1;
+            }
+        }
+        if (count == 1) {
+            result += String.valueOf(s.charAt(i - 1));
+        } else {
+            result += count + String.valueOf(s.charAt(i - 1));
+        }
+
+        return result;
+    }
+
 
     public static void run() {
         // this function behaves as `main()` for the 'run' command
