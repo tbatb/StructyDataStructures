@@ -1,39 +1,8 @@
-public class Introduction {
-    public static double maxValue(double[] numbers) {
-        // todo
-        int i = 0;
-        double  max = numbers[i];
-        // use negative infinity to cover the edge case for negative normal numbers.
-        double inf = Double.NEGATIVE_INFINITY;
+package Introduction;
 
-        while (i < numbers.length){
-            if (numbers[i] > max){
-                max = numbers[i];
-            }
-            i++;
-        }
-
-
-
-        return max;
-    }
-
-    public static boolean isPrime(int number) {
-        // todo
-        if (number <= 1){
-            return false;
-        }
-
-        for (int i = 2; i <= Math.sqrt(number); i++){
-            if (number % i == 0){
-                return false;
-            }
-        }
-        return true;
-    }
+public class Compression {
 
     public static String uncompress(String s) {
-        // todo
         String numbers = "0123456789";
         String result = "";
 
@@ -54,7 +23,6 @@ public class Introduction {
     }
 
     public static String compress(String s) {
-        // todo
         String result = "";
         int count = 1;
         int i = 1;
@@ -83,10 +51,39 @@ public class Introduction {
         return result;
     }
 
+    // ccaaatsss
+    // i
+    //   j
 
-    public static void run() {
-        // this function behaves as `main()` for the 'run' command
-        // you may sandbox in this function, but should not remove it
+    public static String STRUCTY_compress (String s){
+
+        s += "?";
+        String result = "";
+        int j = 0;
+        int i = 0;
+
+        while (j < s.length()){
+            if (s.charAt(i) == s.charAt(j)){
+                j += 1;
+            } else {
+                int count = j - i;
+                if (count > 1){
+                    result += count + String.valueOf(s.charAt(i));
+                } else {
+                    result += String.valueOf(s.charAt(i));
+
+                }
+                i = j;
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args){
+
+        String s = "ccaaatsss";
+        String newe = STRUCTY_compress(s);
+        System.out.println(newe);
     }
 
 }
