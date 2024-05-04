@@ -22,6 +22,13 @@ public class Compression {
         return result;
     }
 
+    /**
+     * Takes in a String and counts how often each character appears.
+     * Then prints out the number of the characters plus the character itself and concats all of it into one single String.
+     * @param s
+     * @return modified String with count of character
+     */
+
     public static String compress(String s) {
         String result = "";
         int count = 1;
