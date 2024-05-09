@@ -15,11 +15,11 @@ public class SinglyLinkedList {
      * @param <T>
      */
     private static class Node<T> {
-        T value;
+        T val;
         Node<T> next;
 
-        public Node(T value){
-            this.value = value;
+        public Node(T val){
+            this.val = val;
             this.next = null;
         }
     }
@@ -39,7 +39,7 @@ public class SinglyLinkedList {
         }
 
         while (current != null) {
-            values.add(current.value);
+            values.add(current.val);
             current = current.next;
         }
         return values;
@@ -55,7 +55,7 @@ public class SinglyLinkedList {
         if (head == null) {
             return;
         }
-        values.add(head.value);
+        values.add(head.val);
         recursivelinkedListValues(head.next, values);
 
     }
@@ -82,7 +82,7 @@ public class SinglyLinkedList {
 
         Node<Integer> current = head;
         while (current != null) {
-            sum += current.value;
+            sum += current.val;
             current = current.next;
         }
         return sum;
@@ -99,7 +99,7 @@ public class SinglyLinkedList {
         if (head == null) {
             return 0;
         }
-        return head.value + sumList(head.next);
+        return head.val + sumList(head.next);
     }
 
     /**
@@ -120,7 +120,7 @@ public class SinglyLinkedList {
         Node<T> current = head;
 
         while (current != null) {
-            if (current.value == target) {
+            if (current.val == target) {
                 return true;
             }
             current = current.next;
@@ -148,13 +148,185 @@ public class SinglyLinkedList {
         if (head == null) {
             return false;
         }
-        if (head.value == target) {
+        if (head.val == target) {
             return true;
         }
         return recursiveLinkedListFind(head.next, target);
 
-
     }
+
+    /**
+     * The method looks for a node at a specific index. If no values excist it should return null
+     * The method uses a second pointer, besides the index pointer, to iterate through the linked List.
+     * Timne  O(n), Space O(1)
+     *
+     * @param head
+     * @param index
+     * @param <T>
+     * @return The value at a specific index in the linked list.
+     */
+    public static <T> T getNodeValue(Node<T> head, int index){
+        if (head == null) {
+            return null;
+        }
+        Node<T> current = head;
+        int pointer = 0;
+        while (current != null) {
+            if (pointer == index) {
+                return current.val;
+            }
+            pointer++;
+            current = current.next;
+        }
+        return null;
+    }
+
+    /**
+     * The method looks for a node at a specifix index, then returns the value on the index.
+     * We can use our Integer index and decrement it with each call, so once its on 0, it should be on
+     * its index. i.e. index = 2, after two calls it is on 0, which is the second index.
+     * Time O(n), Space O(n)
+     *
+     * @param head
+     * @param index
+     * @param <T>
+     * @return The value at a specific index recursively
+     */
+    public static <T> T recursiveGetNodeValue(Node<T> head, int index){
+        if (head == null) {
+            return null;
+        }
+        if (index == 0) {
+            return head.val;
+        }
+
+        return recursiveGetNodeValue(head.next, index - 1);
+    }
+
+    /**
+     * Reverses the order of the linked list. The current.next pointer points to the prev Pointer
+     * The prev should point to the current and the current to the current.next
+     * null   a  -> b   ->   c -> d
+     * prev  cur    nex
+     * null <- a    <- b    <- c <- d
+     * prev  cur     nex
+     *
+     * @param head
+     * @param <T>
+     * @return Linked list but in reversed order
+     */
+    public static <T> Node<T> reverseList(Node<T> head){
+        // todo
+        Node<T> current = head;
+        Node<T> prev = null;
+
+
+        while (current != null) {
+            Node<T> next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+
+
+        }
+        return prev;
+    }
+
+    /**
+     * Helper function to initialze the prev as null;
+     *
+     * @param head
+     * @param <T>
+     */
+    public static <T> Node<T> recursiveReverseList(Node<T> head){
+        return recursiveReverseList(head, null);
+    }
+
+    /**
+     * Once we get to our base case, we can return the reversed linked list.
+     * Top head calls helper function. head => next, prev => head - this changes up the point of view.
+     *
+     * @param head
+     * @param prev
+     * @param <T>
+     * @return A reversed linked list recursively
+     */
+    public static <T> Node<T> recursiveReverseList(Node<T> head, Node<T> prev){
+        // todo
+        if (head == null) {
+            return prev;
+        }
+        Node<T> next = head.next;
+        head.next = prev;
+        return recursiveReverseList(next, head);
+    }
+    // null <- a    <- b        c     -> null
+    //        prev     head     nex
+    // null <- a    <- b    <-    c     -> null
+    //                           prev     head     nex
+
+    /**
+     * The method zipperLists, takes in the head of two linked lists as arguments.
+     * The method should zipper the two lists together into single linked list by alternating nodes.
+     * If one of the linked lists is longer than the other, the resulting list should terminate with the remaining nodes.
+     * The method should return the head of the zippered linked list.
+     * Do this in-place, by mutating the original Nodes.
+     * You may assume that both input lists are non-empty.
+     *
+     * @param head1
+     * @param head2
+     * @param <T>
+     * @return Union of both linked lists.
+     */
+    public static <T> Node<T> zipperLists(Node<T> head1, Node<T> head2){
+        Node<T> head = head1;
+        Node<T> tail = head;
+        Node<T> current1 = head1.next;
+        Node<T> current2 = head2;
+        int idx = 0;
+
+        while (current1 != null && current2 != null) {
+            if (idx % 2 == 0) {
+                tail.next = current2;
+                current2 = current2.next;
+            } else {
+                tail.next = current1;
+                current1 = current1.next;
+            }
+            idx++;
+            tail = tail.next;
+        }
+
+        if (current1 != null) {
+            tail.next = current1;
+        }
+        if (current2 != null) {
+            tail.next = current2;
+        }
+        return head;
+    }
+
+    public static <T> Node<T> recuriseZipperLists(Node<T> head1, Node<T> head2){
+        return recuriseZipperLists(head1, head2, 0);
+    }
+
+    public static <T> Node<T> recuriseZipperLists(Node<T> head1, Node<T> head2, int count){
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+
+        if (count % 2 == 0) {
+            head1.next = recuriseZipperLists(head1.next, head2, count + 1);
+            return head1;
+        } else {
+            head2.next = recuriseZipperLists(head1, head2.next, count + 1);
+            return head2;
+        }
+    }
+
 
 
 }
