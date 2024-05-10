@@ -120,7 +120,9 @@ public class Binarytree {
     //          b     c
     //         / \     \
     //        d   e     f
+    public static void main(String[] args){
 
+    }
 
 }
 

@@ -306,6 +306,15 @@ public class SinglyLinkedList {
         return head;
     }
 
+
+    /**
+     * Helper Method, which assist the recursiveZipperlists method.
+     *
+     * @param head1
+     * @param head2
+     * @param <T>
+     * @return
+     */
     public static <T> Node<T> recuriseZipperLists(Node<T> head1, Node<T> head2){
         return recuriseZipperLists(head1, head2, 0);
     }
@@ -327,6 +336,71 @@ public class SinglyLinkedList {
         }
     }
 
+    /**
+     * The mergeList method takes in the head of two sorted linked lists as arguments. This is done by in-place mutation
+     * of the original Nodes. Both input lists are non-empty and contain increasing sorted numbers.
+     * Since the new list should be in increasing order,
+     * we will need to compare the current value in both lists and set the smaller number first into the list, then the bigger
+     * number is going to follow the smaller number into the list.
+     * For this we will use a new Node dummyhead and a pointer tail to point to our dummyhead node.
+     * Lastly we will need to cover cases in which one list is longer than the other one. see edge cases
+     *
+     * @param head1
+     * @param head2
+     * @return The method returns a merge of the two lists, combined into a single sorted linked list.
+     * Dummyhead.next is returned since we don't want the head of the list in our solution.
+     */
+    public static Node<Integer> mergeLists(Node<Integer> head1, Node<Integer> head2){
+        Node<Integer> dummyHead = new Node<>(0);
+        Node<Integer> tail = dummyHead;
 
+        Node<Integer> current1 = head1;
+        Node<Integer> current2 = head2;
 
+        while (current1 != null && current2 != null) {
+            if (current2.val > current1.val) {
+                tail.next = current1;
+                current1 = current1.next;
+            } else {
+                tail.next = current2;
+                current2 = current2.next;
+
+            }
+            tail = tail.next;
+        }
+
+        //edge cases
+        if (current1 != null) {
+            tail.next = current1;
+        }
+        if (current2 != null) {
+            tail.next = current2;
+        }
+        return dummyHead.next;
+    }
+
+    /**
+     * Former method but recursively. In our first comparison logic, we need to return head1.next because we used it, head2 should stay unchanged.
+     * Respectively we need to implement the same logic but inverted for our else case.
+     *
+     * @param head1
+     * @param head2
+     * @return
+     */
+    public static Node<Integer> recursiveMergeLists(Node<Integer> head1, Node<Integer> head2){
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+
+        if (head1.val < head2.val) {
+            head1.next = recursiveMergeLists(head1.next, head2);
+            return head1;
+        } else {
+            head2.next = recursiveMergeLists(head1, head2.next);
+            return head2;
+        }
+    }
 }
