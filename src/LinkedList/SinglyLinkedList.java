@@ -5,6 +5,7 @@ import java.util.List;
 
 public class SinglyLinkedList {
 
+
     /**
      * Node created for a single linked list.
      * Uses Generics <T>. This is useful because we won't have any concrete idea of Node values.
@@ -14,7 +15,7 @@ public class SinglyLinkedList {
      *
      * @param <T>
      */
-    private static class Node<T> {
+    public static class Node<T> {
         T val;
         Node<T> next;
 
@@ -443,5 +444,124 @@ public class SinglyLinkedList {
         }
     }
 
+    /**
+     * Write a method, longestStreak, that takes in the head of a linked list as an argument.
+     * The method should return the length of the longest consecutive streak of the same value within the list.
+     *
+     * @param head
+     * @param <T>
+     * @return The longest consecutive streak of the same value.
+     */
+    public static <T> int longestStreak(Node<T> head){
+        int maxStreak = 0;
+        int currentStreak = 0;
+        Node<T> current = head;
+        T prev = null;
+
+        while (current != null) {
+            if (prev == current.val) {
+                currentStreak += 1;
+            } else {
+                currentStreak = 1;
+            }
+            if (currentStreak > maxStreak) {
+                maxStreak = currentStreak;
+            }
+            prev = current.val;
+            current = current.next;
+        }
+        return maxStreak;
+    }
+
+    /**
+     * Write a method, removeNode, that takes in the head of a linked list and a target value as arguments.
+     * The method should delete the node containing the target value from the linked list
+     * and return the head of the resulting linked list. If the target appears multiple times in
+     * the linked list, only remove the first instance of the target in the list.
+     * Do this in-place.
+     * You may assume that the input list is non-empty.
+     * You may assume that the input list contains the target.
+     *
+     * @param head
+     * @param targetVal
+     * @param <T>
+     * @return
+     */
+    public static <T> Node<T> removeNode(Node<T> head, T targetVal){
+        //edge case if the target value is at the first index
+        if (head.val == targetVal) {
+            return head.next;
+        }
+
+        Node<T> current = head;
+        Node<T> prev = null;
+
+        while (current != null) {
+            if (current.val == targetVal) {
+                prev.next = current.next;
+                break;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return head;
+    }
+
+    /**
+     * Write a method, insertNode, that takes in the head of a linked list, a value, and an index.
+     * The method should insert a new node with the value into the list at the specified index.
+     * Consider the head of the linked list as index 0. The method should return the head of the resulting linked list.
+     * You may assume that the input list is non-empty and the index is not greater than the length of the input list.
+     *
+     * @param head
+     * @param value
+     * @param index
+     * @param <T>
+     * @return Add the value at the specific index in the linked list.
+     */
+    public static <T> Node<T> insertNode(Node<T> head, T value, int index){
+        // edge case at head
+        if (index == 0) {
+            Node<T> newNode = new Node<>(value);
+            newNode.next = head;
+            return newNode;
+        }
+
+        Node<T> current = head;
+        Node<T> prev = null;
+        int counter = 0;
+
+
+        while (true) {
+            if (counter == index) {
+                Node<T> newNode = new Node<>(value);
+                newNode.next = current;
+                prev.next = newNode;
+                return head;
+            }
+            counter += 1;
+            prev = current;
+            current = current.next;
+        }
+
+
+    }//eom
+
+    public static <T> Node<T> recursiveInsertNode(Node<T> head, T value, int index){
+        return recursiveInsertNode(head, null, value, index);
+    }
+
+    public static <T> Node<T> recursiveInsertNode(Node<T> head, Node<T> prev, T value, int index){
+        if (index == 0) {
+            Node<T> newNode = new Node<>(value);
+            newNode.next = head;
+            if (prev != null) {
+                prev.next = newNode;
+            }
+            return newNode;
+        }
+        head.next = recursiveInsertNode(head.next, head, value, index - 1);
+        return head;
+    }
 
 }
