@@ -74,6 +74,12 @@ public class Test {
         nodelist.deleteFirstNode();
         System.out.println();
         nodelist.displayForward();
+        System.out.println();
+        nodelist.deleteLastNode();
+        nodelist.displayForward();
+        System.out.println();
+        nodelist.deleteLastNode();
+        nodelist.displayForward();
 
     }
 }

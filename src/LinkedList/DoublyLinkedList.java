@@ -60,7 +60,6 @@ public class DoublyLinkedList {
     }
 
     //    NULL <--| prev | data | next |-->  newnode --> null
-
     /**
      * My own iteration of the insertAtEnd method
      *
@@ -77,7 +76,8 @@ public class DoublyLinkedList {
         }
         length++;
     }
-    //    NULL <--head <-->| prev | data | next | --> null
+
+    //   NULL <--head <-->| prev | data | next | --> null
 
     /**
      * This method deletes the first node in the linked list.
@@ -95,6 +95,23 @@ public class DoublyLinkedList {
             head.prev = null;
         }
         length--;
+    }
+
+    //   NULL <--head <-->| prev | data | next | --> tail --> null
+    public DLNode deleteLastNode(){
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        DLNode temp = tail;
+        if (head == tail) {
+            head = null;
+        } else {
+            tail.prev.next = null;
+        }
+        tail = tail.prev;
+        temp.prev = null;
+        length--;
+        return temp;
     }
 
 
