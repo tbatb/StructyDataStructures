@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLinkedList {
     /*
     Given a node, we can navigate lists in both forward and backward direction, which is not possible with a singly linked list.
@@ -29,14 +31,14 @@ public class DoublyLinkedList {
 
     public void insertLast(int val){
 
-        DLNode current = new DLNode(null, null, val);
+        DLNode newNode = new DLNode(null, null, val);
         if (isEmpty()) {
-            head = current;
+            head = newNode;
         } else {
-            tail.next = current;
+            tail.next = newNode;
         }
-        current.prev = tail;
-        tail = current;
+        newNode.prev = tail;
+        tail = newNode;
         length++;
     }
 
@@ -46,15 +48,55 @@ public class DoublyLinkedList {
      * @param val
      */
     public void insertFirst(int val){
-        DLNode current = new DLNode(null, null, val);
+        DLNode newNode = new DLNode(null, null, val);
         if (isEmpty()) {
-            tail = current;
+            tail = newNode;
         } else {
-            head.prev = current;
+            head.prev = newNode;
         }
-        current.next = head;
-        head = current;
+        newNode.next = head;
+        head = newNode;
+        length++;
     }
+
+    //    NULL <--| prev | data | next |-->  newnode --> null
+
+    /**
+     * My own iteration of the insertAtEnd method
+     *
+     * @param val
+     */
+    public void insertAtEnd(int val){
+        DLNode newNode = new DLNode(null, null, val);
+        if (isEmpty()) {
+            head = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            newNode.next = null;
+        }
+        length++;
+    }
+    //    NULL <--head <-->| prev | data | next | --> null
+
+    /**
+     * This method deletes the first node in the linked list.
+     * If our linked list is of length 1, then we may just set our tail to null.
+     */
+    public void deleteFirstNode(){
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        //edge case, if only one value is there
+        if (head == tail) {
+            tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+        length--;
+    }
+
 
     /**
      * This method prints the nodes in our linked list in forward fashion.

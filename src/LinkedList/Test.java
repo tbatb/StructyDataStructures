@@ -55,6 +55,25 @@ public class Test {
         System.out.println();
         dll.displayBackward();
 
+        System.out.println("===================================================");
+        DoublyLinkedList nodelist = new DoublyLinkedList(null, null, 0);
+        nodelist.insertFirst(1);
+        nodelist.insertFirst(3);
+        nodelist.insertFirst(5);
+        nodelist.insertFirst(11);
+        nodelist.insertFirst(23);
+        nodelist.displayForward();
+        System.out.println();
+        nodelist.displayBackward();
+
+
+        System.out.println("===================================================");
+        nodelist.insertAtEnd(99);
+        nodelist.displayForward();
+        nodelist.deleteFirstNode();
+        nodelist.deleteFirstNode();
+        System.out.println();
+        nodelist.displayForward();
 
     }
 }
