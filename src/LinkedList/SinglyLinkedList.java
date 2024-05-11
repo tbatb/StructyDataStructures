@@ -403,4 +403,45 @@ public class SinglyLinkedList {
             return head2;
         }
     }
+
+    /**
+     * Write a method, isUnivalueList, that takes in the head of a linked list as an argument.
+     * The method should return a boolean indicating whether or not the linked list contains exactly one unique value.
+     * You may assume that the input list is non-empty.
+     *
+     * @param head
+     * @param <T>
+     * @return A boolean true if the values in the linked list are unique.
+     */
+    public static <T> boolean isUnivalueList(Node<T> head){
+        T value = head.val;
+        Node<T> current = head;
+
+        while (current != null) {
+            if (current.val != value) {
+                return false;
+            }
+            current = current.next;
+        }
+
+        return true;
+    }
+
+    public static <T> boolean recursiveIsUnivalueList(Node<T> head){
+        // todo
+        return recursiveIsUnivalueList(head, head.val);
+    }
+
+    public static <T> boolean recursiveIsUnivalueList(Node<T> head, T value){
+        if (head == null) {
+            return true;
+        }
+        if (head.val != value) {
+            return false;
+        } else {
+            return recursiveIsUnivalueList(head.next, value);
+        }
+    }
+
+
 }
