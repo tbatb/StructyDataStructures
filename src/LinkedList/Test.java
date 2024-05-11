@@ -45,5 +45,16 @@ public class Test {
         SinglyLinkedList.createLinkedList(List.of());// null
 
 
+        System.out.println("===================================================");
+        DoublyLinkedList dll = new DoublyLinkedList(null, null, 0);
+        dll.insertLast(1);
+        dll.insertLast(4);
+        dll.insertLast(6);
+        dll.insertLast(8);
+        dll.displayForward();
+        System.out.println();
+        dll.displayBackward();
+
+
     }
 }
