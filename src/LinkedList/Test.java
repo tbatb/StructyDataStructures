@@ -79,7 +79,10 @@ public class Test {
         nodelist.displayForward();
         System.out.println();
         nodelist.deleteLastNode();
-        nodelist.displayForward();
+
+        System.out.println("===================================================");
+        CircularSinglyLinkedList cll = new CircularSinglyLinkedList(null, 0);
+        cll.createCircularLinkedList();
 
     }
 }
