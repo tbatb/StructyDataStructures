@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.List;
+
 public class Test {
     public static void main(String[] args){
         System.out.println("longest Streak: ");
@@ -35,6 +37,12 @@ public class Test {
         // a -> b -> c -> d -> e -> f
 
         System.out.println(SinglyLinkedList.removeNode(x, "z")); // 4
+
+
+        SinglyLinkedList.createLinkedList(List.of("h", "e", "y"));// h -> e -> y
+        SinglyLinkedList.createLinkedList(List.of(1, 7, 1, 8)); // 1 -> 7 -> 1 -> 8
+        SinglyLinkedList.createLinkedList(List.of("a"));// a
+        SinglyLinkedList.createLinkedList(List.of());// null
 
 
     }

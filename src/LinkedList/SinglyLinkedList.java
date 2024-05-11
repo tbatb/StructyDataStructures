@@ -564,4 +564,41 @@ public class SinglyLinkedList {
         return head;
     }
 
+    /**
+     * Write a method, createLinkedList, that takes in a list of values as an argument.
+     * The method should create a linked list containing each element of the list as the values of the nodes.
+     * The method should return the head of the linked list.
+     *
+     * @param values
+     * @param <T>
+     * @return A linked list by modifying a List.of integers or character.
+     */
+    public static <T> Node<T> createLinkedList(List<T> values){
+        Node<T> dummyHead = new Node<>(null);
+        Node<T> tail = dummyHead;
+        for (T value : values) {
+            tail.next = new Node<>(value);
+            tail = tail.next;
+
+        }
+        return dummyHead.next;
+    }
+
+
+    public static <T> Node<T> recursiveCreateLinkedList(List<T> values){
+        return recursiveCreateLinkedList(values, 0);
+    }
+
+    public static <T> Node<T> recursiveCreateLinkedList(List<T> values, int idx){
+        if (idx == values.size()) {
+            return null;
+        }
+        Node<T> newNode = new Node<>(values.get(idx));
+        newNode.next = recursiveCreateLinkedList(values, idx + 1);
+
+        return newNode;
+
+    }
+
+
 }
