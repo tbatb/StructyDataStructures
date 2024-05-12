@@ -81,8 +81,17 @@ public class Test {
         nodelist.deleteLastNode();
 
         System.out.println("===================================================");
-        CircularSinglyLinkedList cll = new CircularSinglyLinkedList(null, 0);
+        CircularSinglyLinkedList cll = new CircularSinglyLinkedList();
         cll.createCircularLinkedList();
+        cll.display();
+
+        System.out.println("===================================================");
+        cll.display();
+        cll.insertAtFront(99);
+        cll.insertAtFront(101);
+        cll.display();
 
     }
+
+
 }
