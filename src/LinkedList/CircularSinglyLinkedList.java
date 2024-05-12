@@ -32,6 +32,15 @@ public class CircularSinglyLinkedList {
         length++;
     }
 
+    /**
+     * This method adds a data to the end of the linked list.
+     * Base case: if node ist empty. Should last point to null, then we have to assign our last pointer to the temp node
+     * and additionally the last.next to last.
+     * In other cases we need to assign our temp.next pointer to the last.next pointer. Always make sure to point the new
+     * pointers to the existing ones.
+     *
+     * @param data
+     */
     public void insertAtEnd(int data){
         CLLNode temp = new CLLNode(data);
         if (last == null) {
