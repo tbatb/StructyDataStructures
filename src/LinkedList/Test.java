@@ -94,9 +94,26 @@ public class Test {
 
         System.out.println("===================================================");
         System.out.println("insertion at End: ");
+        cll.display();
         cll.insertAtEnd(42);
         cll.display();
         cll.insertAtEnd(88);
+        cll.display();
+        System.out.println("===================================================");
+        System.out.println("deletion at front option 1: ");
+        cll.display();
+        cll.deleteAtFront();
+        cll.display();
+        System.out.println("deletion at front option 2: ");
+        cll.display();
+        cll.removeFirst();
+        cll.display();
+        System.out.println("===================================================");
+        System.out.println("deletion at end: ");
+        cll.insertAtEnd(69);
+        cll.insertAtEnd(3333);
+        cll.display();
+        cll.deleteAtEnd();
         cll.display();
 
 

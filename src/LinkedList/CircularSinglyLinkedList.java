@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.NoSuchElementException;
+
 public class CircularSinglyLinkedList {
     /*
     Similar to the singly linked list, traversal to only one direction is possible but with a slight difference. The last node, in other words
@@ -23,7 +25,7 @@ public class CircularSinglyLinkedList {
      */
     public void insertAtFront(int data){
         CLLNode temp = new CLLNode(data);
-        if (last == null) {
+        if (isEmpty()) {
             last = temp;
         } else {
             temp.next = last.next;
@@ -43,7 +45,7 @@ public class CircularSinglyLinkedList {
      */
     public void insertAtEnd(int data){
         CLLNode temp = new CLLNode(data);
-        if (last == null) {
+        if (isEmpty()) {
             last = temp;
             last.next = last;
         } else {
@@ -52,6 +54,56 @@ public class CircularSinglyLinkedList {
             last = temp;
         }
         length++;
+    }
+
+    /**
+     * This method deletes the element at the beginning of the list.
+     * Two options here, other one is right below.
+     */
+    public void deleteAtFront(){
+        CLLNode first = last.next;
+        if (isEmpty()) {
+            return;
+        } else {
+            last.next = first.next;
+        }
+        length--;
+    }
+
+    public void removeFirst(){
+        CLLNode temp = last.next;
+
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (last.next == last) {
+            last = null;
+        } else {
+            last.next = temp.next;
+        }
+        temp.next = null;
+        length--;
+
+    }
+
+
+    /**
+     * Removes last element in the circular linked list.
+     */
+    public void deleteAtEnd(){
+        CLLNode temp = last.next;
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (last.next == last) {
+            last = null;
+        }
+        while (temp.next != last) {
+            temp = temp.next;
+        }
+        temp.next = last.next;
+        last = temp.next;
+        length--;
     }
 
 
