@@ -86,10 +86,19 @@ public class Test {
         cll.display();
 
         System.out.println("===================================================");
+        System.out.println("insertion at Front: ");
         cll.display();
         cll.insertAtFront(99);
         cll.insertAtFront(101);
         cll.display();
+
+        System.out.println("===================================================");
+        System.out.println("insertion at End: ");
+        cll.insertAtEnd(42);
+        cll.display();
+        cll.insertAtEnd(88);
+        cll.display();
+
 
     }
 

@@ -32,6 +32,20 @@ public class CircularSinglyLinkedList {
         length++;
     }
 
+    public void insertAtEnd(int data){
+        CLLNode temp = new CLLNode(data);
+        if (last == null) {
+            last = temp;
+            last.next = last;
+        } else {
+            temp.next = last.next;
+            last.next = temp;
+            last = temp;
+        }
+        length++;
+    }
+
+
     /**
      * @return Is it empty TRUE, else FALSE.
      */
@@ -60,7 +74,7 @@ public class CircularSinglyLinkedList {
             first = first.next;
         } while (first != last.next);
 
-        System.out.println("" + first.data);
+        System.out.println("[first node] " + first.data);
 
     }
 
