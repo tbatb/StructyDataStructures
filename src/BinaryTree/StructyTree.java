@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 
-public class Binarytree {
+public class StructyTree {
     /**
      * This class contains programmatic solutions to the binary tree.
      * It covers functions/methods like adding, deleting, searching, exchanging, tree sum, tree min value, tree pathfinder
@@ -41,28 +41,7 @@ public class Binarytree {
 
     }
 
-    /**
-     * Depth First Traversal Problem: Our method, depthFirstValues, takes in the root of a binary tree.
-     * It will add all values into a separate list. NOT WORKING ATM
-     *
-     * @param root
-     * @return The method should return a list containing all values of the tree in depth-first order.
-     * Time O(n), Space O(n)
-     */
 
-    public static List<String> depthFirstValues(TreeNode<String> root){
-        //TODO:using java frameworks is not allowed in the EP2 Test1, so still need to ADD own STACK, QUEUE DS.
-        ListStack stack = new ListStack();
-        stack.push(root.toString());
-        List<String> values = new ArrayList<>();
-        while (!stack.isEmpty()) {
-            //TreeNode current = stack.pop();
-            //values.add(current.value)
-            return null;
-        }
-
-        return values;
-    }
 
 
     /**

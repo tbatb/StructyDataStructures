@@ -1,6 +1,10 @@
 package Queue;
 
+import LinkedList.SinglyLinkedList;
+
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 //FIFO
 public class MyQueue {
@@ -67,6 +71,26 @@ public class MyQueue {
         }
         size--;
         return result;
+    }
+
+    /**
+     * 1 ... 1 | 10 ... 2 | 11 ... 3 |
+     * Converts decimal numbers to binary numbers.
+     */
+    public String[] generateBinaryNumbers(int n){
+        String[] result = new String[n];
+        Queue<String> queue = new LinkedList<>();
+        queue.offer("1");
+        for (int i = 0; i < n; i++) {
+            result[i] = queue.poll();
+            String n1 = result[i] + "0";
+            String n2 = result[i] + "1";
+            queue.offer(n1);
+            queue.offer(n2);
+        }
+        return result;
+
+
     }
 
     public void print(){
