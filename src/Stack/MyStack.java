@@ -1,6 +1,6 @@
 package Stack;
 
-public class MyStack {
+public class MyStack<T> {
     // push, peek, pop, size, isEmpty
     private int array[];
     private int top; // pointer

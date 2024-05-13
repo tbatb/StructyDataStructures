@@ -1,7 +1,6 @@
 package BinaryTree;
 
 import Stack.MyStack;
-import com.sun.source.tree.Tree;
 
 public class BinaryTree {
     /*
@@ -20,6 +19,18 @@ public class BinaryTree {
      Operations: adding left & right, deleting a node, searching at an index,
      */
     public TreeNode root;
+
+    public void insert(int data){
+//        if (root == null){
+        //           root = new TreeNode(data);
+        //       } else if (data < root.data){
+        //           root.left = insert(root.left.data);
+
+    }
+
+    public void insertRec(TreeNode root, int data){
+
+    }
 
     /**
      * Creates binary tree and assigns first to root, frist.left to second, first.right to third.
@@ -131,7 +142,25 @@ public class BinaryTree {
     }
 
     /**
+     * This methods searches for a given key in the binary tree.
      *
+     * @param root
+     * @param key
+     * @return
+     */
+    public TreeNode search(TreeNode root, int key){
+        if (root == null || root.data == key) {
+            return root;
+        }
+        if (key < root.data) {
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
+    }
+
+    /**
+     * This methods removes the minimum key in the binary tree.
      */
     public void removeMinimum(){
         if (root == null) {
@@ -142,6 +171,47 @@ public class BinaryTree {
         TreeNode parent = null;
         int result = root.data;
 
+        while (current.left != null) {
+            parent = current;
+            current = current.left;
+        }
+        result = current.data;
+
+        if (parent == null) {
+            root = root.right;
+        } else {
+            parent.left = current.right;
+        }
+
+    }
+
+    /**
+     * Given the root of a binary search tree, determine if it is valid binary search tree (BST).
+     * A valid BST is defined as follows:
+     * <p>
+     * 1. The left subtree of a node contains only nodes with keys less than the nodes key.<p>
+     * 2. The right subtree of a node contains only nodes with keys greater than the nodes key. <p>
+     * 3. Both the left and right subtrees must also be binary search trees.
+     *
+     * @param root
+     * @param min
+     * @param max
+     * @return True if the tree is a binary search tree.
+     */
+    public boolean isValidTree(TreeNode root, long min, long max){
+        if (root == null) {
+            return true;
+        }
+        if (root.data <= min || root.data >= max) {
+            return false;
+        }
+
+        boolean left = isValidTree(root.left, min, root.data);
+        if (left) {
+            boolean right = isValidTree(root.right, root.data, max);
+            return right;
+        }
+        return false;
     }
 
 
