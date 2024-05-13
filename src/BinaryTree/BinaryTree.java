@@ -20,18 +20,6 @@ public class BinaryTree {
      */
     public TreeNode root;
 
-    public void insert(int data){
-//        if (root == null){
-        //           root = new TreeNode(data);
-        //       } else if (data < root.data){
-        //           root.left = insert(root.left.data);
-
-    }
-
-    public void insertRec(TreeNode root, int data){
-
-    }
-
     /**
      * Creates binary tree and assigns first to root, frist.left to second, first.right to third.
      * second <-- first --> third
@@ -67,7 +55,7 @@ public class BinaryTree {
     }
 
     /**
-     * Traverse the left subtree in In order fashion. Visit the root node.
+     * Traverse the left subtree in In order fashion. Visit the root node. Print it.
      * Traverse the right subtree in IN order fashion.
      *
      * @param root
@@ -142,11 +130,11 @@ public class BinaryTree {
     }
 
     /**
-     * This methods searches for a given key in the binary tree.
+     * This method searches for a given key in the binary tree.
      *
      * @param root
      * @param key
-     * @return
+     * @return the key in binary tree, if it exists.
      */
     public TreeNode search(TreeNode root, int key){
         if (root == null || root.data == key) {
