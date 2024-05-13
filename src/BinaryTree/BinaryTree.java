@@ -108,6 +108,42 @@ public class BinaryTree {
         return result;
     }
 
+    /**
+     * This method inserts a value into a tree.
+     * Since it is a binary, the algorithm will add smaller values to the left and
+     * bigger values to the right.
+     *
+     * @param root
+     * @param value
+     * @return
+     */
+    public TreeNode insert(TreeNode root, int value){
+        if (root == null) {
+            root = new TreeNode(value);
+            return root;
+        }
+        if (value < root.data) {
+            root.left = insert(root.left, value);
+        } else {
+            root.right = insert(root.right, value);
+        }
+        return root;
+    }
+
+    /**
+     *
+     */
+    public void removeMinimum(){
+        if (root == null) {
+            return;
+        }
+
+        TreeNode current = root;
+        TreeNode parent = null;
+        int result = root.data;
+
+    }
+
 
     class TreeNode {
         private int data; //Generic Type

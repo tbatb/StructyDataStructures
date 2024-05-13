@@ -14,6 +14,7 @@ public class Test {
         System.out.println("postOrder: ");
         btree.postOrder(btree.root);
         System.out.println();
+        btree.findMax(btree.root);
 
 
     }
